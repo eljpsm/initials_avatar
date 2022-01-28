@@ -78,14 +78,16 @@ class InitialsAvatar extends StatelessWidget {
       decoration: BoxDecoration(
           color: bgColor != null ? bgColor!(name) : _bgColor(name),
           shape: shape,
-          boxShadow: [
-            BoxShadow(
-                offset: const Offset(0, 0),
-                blurRadius: 10.0,
-                spreadRadius: elevation,
-                color: shadowColor ??
-                    Theme.of(context).shadowColor.withOpacity(0.3))
-          ]),
+          boxShadow: elevation > 0
+              ? [
+                  BoxShadow(
+                      offset: const Offset(0, 0),
+                      blurRadius: 10.0,
+                      spreadRadius: elevation,
+                      color: shadowColor ??
+                          Theme.of(context).shadowColor.withOpacity(0.3))
+                ]
+              : []),
       child: Center(child: Text(_initials(name), style: textStyle)),
     );
   }
